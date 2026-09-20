@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Primeira Página vuejs</title>
+</head>
+<body>
+    <div id="app">
+        <div class="calculadora">
+            <input type="number" v-model.number="n1">
+            <input type="number" v-model.number="n2">
+
+            <p>A soma é igual a : {{ soma }}</p>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        const { createApp, ref, computed } = Vue
+        createApp({
+            setup(){
+                const n1 = ref(0)
+                const n2 = ref(0)
+                const soma = computed(() => {
+                    return n1.value + n2.value
+                })
+                return { n1, n2, soma}
+            }
+        }).mount('#app')     
+    </script>
+
+</body>
+</html>

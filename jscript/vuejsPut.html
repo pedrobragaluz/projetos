@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <!-- Exemplo completo com Vue 3 via CDN -->
+<div id="app">
+  <button @click="testarApi">Enviar dados</button>
+  <pre>{{ resultado }}</pre>
+</div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+Vue.createApp({
+  data() {
+    return {
+      token: 'gk_dd60f93fb496a02278ceffe85f48ff07289ed03e8a496536b7656e2fed3efe95',
+      resultado: 'Clique no botão para enviar.'
+    };
+  },
+  methods: {
+    async testarApi() {
+      const dados = {
+    "titulo_original": "Kono Subarashii Sekai ni Shukufuku wo!",
+    "titulo_portugues": "Konosuba",
+    "sinopse": "KonoSuba (Kono Subarashii Sekai ni Shukufuku wo!) é uma série de comédia e isekai (gênero onde o protagonista vai para outro mundo) cuja primeira temporada do anime foi lançada em janeiro de 2016.",
+    "ano_lancamento": 2016,
+    "status": "finalizado",
+    "episodios": 31,
+    "estudio_id": 2,
+    "generos": [
+        4,
+        3,
+
+        
+    ]
+};
+
+      const resposta = await fetch('https://apigeek.geekdev.com.br/api/v1-teste/animes', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.token}`
+        },
+        body: JSON.stringify(dados)
+      });
+
+      const retorno = await resposta.json();
+      this.resultado = JSON.stringify(retorno, null, 2);
+    }
+  }
+}).mount('#app');
+</script>
+</body>
+</html>

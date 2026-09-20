@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Exemplo completo com Vue 3 via CDN -->
+<div id="app">
+  <button @click="testarApi">Testar endpoint</button>
+  <pre>{{ resultado }}</pre>
+</div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+Vue.createApp({
+  data() {
+    return {
+      token: 'gk_dd60f93fb496a02278ceffe85f48ff07289ed03e8a496536b7656e2fed3efe95',
+      resultado: 'Clique no botão para testar.'
+    };
+  },
+  methods: {
+    async testarApi() {
+      const resposta = await fetch('https://apigeek.geekdev.com.br/api/v1-teste/animes/31', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${this.token}`
+        }
+      });
+
+      const dados = await resposta.json();
+      this.resultado = JSON.stringify(dados, null, 2);
+    }
+  }
+}).mount('#app');
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <p>Digite sua Idade</p>
+        <input type="text" id="idadade">
+            <button id="botao">Clique Aqui</button>
+    <script>
+        let botao = document.getElementById("botao");
+
+        botao.addEventListener("click", function(){
+
+            let idade = Number(document.getElementById("idade").value);
+
+            if(idade >= 18){
+                console.log("Você é de maior!")
+            }else{
+                console.log("Você não é de maior!")
+            }
+        
+    });
+        
+        
+        
+        
+        
+    </script>
+</body>
+</html>
